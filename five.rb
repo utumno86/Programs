@@ -1,6 +1,7 @@
 require 'prime'
 primes = Hash.new(0)
-puts "I'm just going to assume you knw what number to put in."
+puts 'Please input the number which you would like to calculate the lowest
+number evenly divisible by each number from it to zero:'
 high_num = gets.chomp.to_i
 (2..high_num).each do |num|
   Prime.prime_division(num).each do |prime_factor|
