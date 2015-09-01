@@ -32,8 +32,7 @@ high_num = 0
       if high_num < horizontal_right
         high_num = horizontal_right
       end
-    end
-    if j - 3 >= 0
+    elsif j - 3 >= 0
       horizontal_left = grid[i][j] * grid[i][j - 1] * grid[i][j - 2] * grid[i][j - 3]
       if high_num < horizontal_left
         high_num = horizontal_left
@@ -44,8 +43,7 @@ high_num = 0
       if high_num < vertical_up
         high_num = vertical_up
       end
-    end
-    if i - 3 >= 0
+    elsif i - 3 >= 0
       vertical_down = grid[i][j] * grid[i - 1][j] * grid[i - 2][j] * grid[i - 3][j]
       if high_num < vertical_down
         high_num = vertical_down
@@ -57,8 +55,8 @@ high_num = 0
         high_num = diagonal_left
       end
     end
-    if i - 3 >= 0 && j - 3 >= 0
-      diagonal_right = grid[i][j] * grid[i - 1][j - 1] * grid[i - 2][j - 2] * grid[i - 3][j - 3]
+    if i - 3 >= 0 && j + 3 <= 19
+      diagonal_right = grid[i][j] * grid[i - 1][j + 1] * grid[i - 2][j + 2] * grid[i - 3][j + 3]
       if high_num < diagonal_right
         high_num = diagonal_right
       end
