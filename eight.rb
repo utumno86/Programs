@@ -2,11 +2,11 @@ big_num = 7316717653133062491922511967442657474235534919493496983520312774506326
 highest_product = 0
 product = 1
 index = 0
-puts "How many consecutive digits would you like to find the highest_product of?"
+puts 'How many consecutive digits would you like to find the highest_product of?'
 consecutive = gets.chomp
 
 def digits(n)
-    Math.log10(n).floor.downto(0).map { |i| (n / 10**i) % 10 }
+  Math.log10(n).floor.downto(0).map { |i| (n / 10**i) % 10 }
 end
 
 ary = digits(big_num)
