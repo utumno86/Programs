@@ -19,34 +19,38 @@ require 'prime'
 #
 # What is the value of the first triangle number to have over five hundred
 # divisors?
-def factors_of(number)
+
+#Triangle Number: 184952099504  Index: 608197 Number of divisors: 20  Highest number of divisors so far: 448
+
+def number_of_factors(number)
   primes, powers = number.prime_division.transpose
+  divisors = 1
   unless powers.nil?
-    exponents = powers.map { |i| (0..i).to_a }
-    divisors = exponents.shift.product(*exponents).map do |powers|
-      primes.zip(powers).map { |prime, power| prime**power }.inject(:*)
+    powers.each do |power|
+      power += 1
+      divisors *= power
     end
-    divisors.sort.map { |div| [div, number / div] }
-  else
-    primes
+    divisors
   end
 end
 
-triangle_num = 0
-divisors =[]
+puts 'You would like to find the first triangle number that has how many factors?'
+highest_factors = gets.chomp.to_i
 
-while divisors.length <= 500
-  i = 1
-  divisors = []
+triangle_num = 1
+divisors = 0
+i = 1
+high_factor_number = 0
+while divisors <= highest_factors
   triangle_num += i
-
-  unless factors_of(triangle_num).nil?
-    factors_of(triangle_num).each do |factor_set|
-      divisors << factor_set[0]
+  unless number_of_factors(triangle_num).nil?
+    divisors = number_of_factors(triangle_num)
+    if divisors > high_factor_number
+      high_factor_number = divisors
     end
-    puts "Number of divisors: #{divisors.length}"
+    puts " Triangle Number: #{triangle_num}  Index: #{i} Number of divisors: #{divisors}  Highest number of divisors so far: #{high_factor_number} "
   end
   i += 1
 end
 
-puts "Triangle number: #{triangle_number}"
+puts " First triangle number with #{highest_factors} factors: #{triangle_num}"
